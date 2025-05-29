@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Permintaan Bantuan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .map-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 50;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-4 relative">
+
+  <!-- Kontrol Musik -->
+<div class="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-white p-2 rounded-full shadow-md border border-gray-300">
+  <button onclick="putarMusik()" class="bg-white-300 text-red px-3 py-1 rounded hover:bg-black-600 text-sm">
+   🎵 Ecok Arikk
+  </button>
+  <button onclick="jedaMusik()" class="bg-black-300 text-red px-3 py-1 rounded hover:bg-black-600 text-sm">
+   🔇 Stop Arikk
+  </button>
+</div>
+
+<!-- Elemen Audio -->
+<audio id="musik" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+  Browser Anda tidak mendukung pemutar audio.
+</audio>
+
+<!-- Script Musik -->
+<script>
+  const audio = document.getElementById('musik');
+
+  function putarMusik() {
+    audio.play();
+  }
+
+  function jedaMusik() {
+    audio.pause();
+  }
+</script>
+
+
+
+  <!-- Logo Google Maps sebagai tautan -->
+<a href="https://www.google.com/maps?q=Jln+Lalu+Mustiadi+No.32,+Sepit,+Lombok" target="_blank"
+   class="fixed top-4 right-4 z-50">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Google_Maps_Logo_2020.svg"
+       alt="Buka di Google Maps"
+       class="w-12 h-12 hover:scale-110 transition duration-200 shadow-md rounded-full border border-gray-300 bg-white p-1">
+</a>
+
+  <!-- Profil Anda -->
+  <section class="bg-white p-6 rounded shadow-md mb-6 max-w-md mx-auto text-center">
+    <img src="im.jpg" alt="Foto Anda" class="w-25 h-20 rounded-full mx-auto mb-4" />
+    <h1 class="text-2xl font-bold">M Azkha Fatoni</h1>
+    <p class="text-gray-600">Saya siap membantu Anda untuk berbagai kebutuhan harian, antar barang, berpacaran, bermain dan lainnya!</p>
+  </section>
+
+  <!-- Formulir Permintaan -->
+  <section class="bg-white p-6 rounded shadow-md max-w-md mx-auto">
+    <h2 class="text-xl font-semibold mb-4">Ajukan Permintaan Bantuan Anda</h2>
+    <form class="space-y-4" id="helpForm">
+      <div>
+        <label class="block text-sm font-medium">Nama Anda</label>
+        <input id="nama" type="text" class="w-full p-2 border rounded" placeholder="Masukkan nama anda" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Apa yang perlu saya dibantu?</label>
+        <input id="kebutuhan" type="text" class="w-full p-2 border rounded" placeholder="Dendek Lile Ndell" required>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Deskripsi Tambahan</label>
+        <textarea id="deskripsi" class="w-full p-2 border rounded" rows="3" placeholder="Tulis detail tambahan..."></textarea>
+      </div>
+      <div>
+        <label class="block text-sm font-medium">Upload Foto (Opsional)</label>
+        <input type="file" class="w-full">
+      </div>
+      <!-- Tombol WhatsApp dan Telepon -->
+      <div class="flex flex-col sm:flex-row gap-3 mt-4">
+        <button type="button" onclick="kirimWhatsApp()" class="bg-green-500 text-white px-4 py-2 rounded text-center hover:bg-green-600 w-full">
+          Kirim via WhatsApp
+        </button>
+        <a href="tel:+6281998832656" class="bg-blue-600 text-white px-4 py-2 rounded text-center hover:bg-blue-700 w-full">
+          Telepon Sekarang
+        </a>
+      </div>
+    </form>
+  </section>
+
+  <!-- Script WhatsApp -->
+  <script>
+    function kirimWhatsApp() {
+      const nama = document.getElementById("nama").value;
+      const kebutuhan = document.getElementById("kebutuhan").value;
+      const deskripsi = document.getElementById("deskripsi").value;
+
+      const pesan = `Halo, saya ${nama}.\nSaya membutuhkan bantuan untuk: ${kebutuhan}.\n\nDeskripsi tambahan:\n${deskripsi}`;
+
+      const url = `https://wa.me/6281998832656?text=${encodeURIComponent(pesan)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
